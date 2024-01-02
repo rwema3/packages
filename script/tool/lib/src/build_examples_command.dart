@@ -35,3 +35,14 @@ const String _flutterBuildTypeLinux = 'linux';
 const String _flutterBuildTypeMacOS = 'macos';
 const String _flutterBuildTypeWeb = 'web';
 const String _flutterBuildTypeWindows = 'windows';
+
+const String _flutterBuildTypeAndroidAlias = 'android';
+
+/// A command to build the example applications for packages.
+class BuildExamplesCommand extends PackageLoopingCommand {
+  /// Creates an instance of the build command.
+  BuildExamplesCommand(
+    super.packagesDir, {
+    super.processRunner,
+    super.platform,
+  }) {
