@@ -300,3 +300,9 @@ class _PlatformDetails {
   /// The key in a pubspec's platform: entry.
   final String pluginPlatform;
 
+  /// The `flutter build` build type.
+  final String flutterBuildType;
+
+  /// Any extra flags to pass to `flutter build`.
+  final List<String> extraBuildFlags;
+}
