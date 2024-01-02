@@ -210,3 +210,22 @@ class BuildExamplesCommand extends PackageLoopingCommand {
         : PackageResult.fail(errors);
   }
 
+  Iterable<String> _readExtraBuildFlagsConfiguration(
+      Directory directory) sync* {
+    final File pluginToolsConfig =
+        directory.childFile(_pluginToolsConfigFileName);
+    if (pluginToolsConfig.existsSync()) {
+      final Object? configuration =
+          loadYaml(pluginToolsConfig.readAsStringSync());
+      if (configuration is! YamlMap) {
+        printError('The $_pluginToolsConfigFileName file must be a YAML map.');
+        printError(
+            'Currently, the key "$_pluginToolsConfigBuildFlagsKey" is the only one that has an effect.');
+        printError(
+            'It must itself be a map. Currently, in that map only the key "$_pluginToolsConfigGlobalKey"');
+        printError(
+            'has any effect; it must contain a list of arguments to pass to the');
+        printError('flutter tool.');
+        printError(_pluginToolsConfigExample);
+        throw ToolExit(_exitInvalidPluginToolsConfig);
+      }
