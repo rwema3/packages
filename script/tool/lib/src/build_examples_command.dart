@@ -110,3 +110,16 @@ class BuildExamplesCommand extends PackageLoopingCommand {
       '"$_pluginToolsConfigBuildFlagsKey" containing a map containing a '
       'single key "$_pluginToolsConfigGlobalKey" containing a list of build '
       'arguments.';
+
+  @override
+  Future<void> initializeRun() async {
+    final List<String> platformFlags = _platforms.keys.toList();
+    platformFlags.sort();
+    if (!platformFlags.any((String platform) => getBoolArg(platform))) {
+      printError(
+          'None of ${platformFlags.map((String platform) => '--$platform').join(', ')} '
+          'were specified. At least one platform must be provided.');
+      throw ToolExit(_exitNoPlatformFlags);
+    }
+  }
+
