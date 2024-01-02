@@ -146,3 +146,8 @@ class BuildExamplesCommand extends PackageLoopingCommand {
       return platforms.map((_PlatformDetails p) => p.label).join(', ');
     }
 
+    if (buildPlatforms.isEmpty) {
+      final String unsupported = requestedPlatforms.length == 1
+          ? '${requestedPlatforms.first.label} is not supported'
+          : 'None of [${platformDisplayList(requestedPlatforms)}] are supported';
+      return PackageResult.skip('$unsupported by this plugin');
