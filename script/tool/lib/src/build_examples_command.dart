@@ -123,3 +123,26 @@ class BuildExamplesCommand extends PackageLoopingCommand {
     }
   }
 
+  @override
+  Future<PackageResult> runForPackage(RepositoryPackage package) async {
+    final List<String> errors = <String>[];
+
+    final bool isPlugin = isFlutterPlugin(package);
+    final Iterable<_PlatformDetails> requestedPlatforms = _platforms.entries
+        .where(
+            (MapEntry<String, _PlatformDetails> entry) => getBoolArg(entry.key))
+        .map((MapEntry<String, _PlatformDetails> entry) => entry.value);
+
+    // Platform support is checked at the package level for plugins; there is
+    // no package-level platform information for non-plugin packages.
+    final Set<_PlatformDetails> buildPlatforms = isPlugin
+        ? requestedPlatforms
+            .where((_PlatformDetails platform) =>
+                pluginSupportsPlatform(platform.pluginPlatform, package))
+            .toSet()
+        : requestedPlatforms.toSet();
+
+    String platformDisplayList(Iterable<_PlatformDetails> platforms) {
+      return platforms.map((_PlatformDetails p) => p.label).join(', ');
+    }
+
