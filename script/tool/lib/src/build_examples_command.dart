@@ -46,3 +46,19 @@ class BuildExamplesCommand extends PackageLoopingCommand {
     super.processRunner,
     super.platform,
   }) {
+    argParser.addFlag(platformLinux);
+    argParser.addFlag(platformMacOS);
+    argParser.addFlag(platformWeb);
+    argParser.addFlag(platformWindows);
+    argParser.addFlag(platformIOS);
+    argParser.addFlag(_platformFlagApk,
+        aliases: const <String>[_flutterBuildTypeAndroidAlias]);
+    argParser.addOption(
+      kEnableExperiment,
+      defaultsTo: '',
+      help: 'Enables the given Dart SDK experiments.',
+    );
+  }
+
+  // Maps the switch this command uses to identify a platform to information
+  // about it.
