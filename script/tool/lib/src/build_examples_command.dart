@@ -261,3 +261,10 @@ class BuildExamplesCommand extends PackageLoopingCommand {
       }
     }
   }
+
+  Future<bool> _buildExample(
+    RepositoryPackage example,
+    String flutterBuildType, {
+    List<String> extraBuildFlags = const <String>[],
+  }) async {
+    final String enableExperiment = getStringArg(kEnableExperiment);
