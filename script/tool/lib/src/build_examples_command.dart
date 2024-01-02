@@ -303,6 +303,3 @@ class _PlatformDetails {
   /// The `flutter build` build type.
   final String flutterBuildType;
 
-  /// Any extra flags to pass to `flutter build`.
-  final List<String> extraBuildFlags;
-}
