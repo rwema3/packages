@@ -195,3 +195,18 @@ class BuildExamplesCommand extends PackageLoopingCommand {
         }
       }
     }
+
+    if (!builtSomething) {
+      if (isPlugin) {
+        errors.add('No examples found');
+      } else {
+        return PackageResult.skip(
+            'No examples found supporting requested platform(s).');
+      }
+    }
+
+    return errors.isEmpty
+        ? PackageResult.success()
+        : PackageResult.fail(errors);
+  }
+
