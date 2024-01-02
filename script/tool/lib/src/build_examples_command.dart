@@ -20,3 +20,9 @@ const String _pluginToolsConfigGlobalKey = 'global';
 
 const String _pluginToolsConfigExample = '''
 $_pluginToolsConfigBuildFlagsKey:
+  $_pluginToolsConfigGlobalKey:
+    - "--no-tree-shake-icons"
+    - "--dart-define=buildmode=testing"
+''';
+
+const int _exitNoPlatformFlags = 3;
