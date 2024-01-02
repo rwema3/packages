@@ -181,3 +181,17 @@ class BuildExamplesCommand extends PackageLoopingCommand {
           print('Skipping ${platform.label} for $packageName; not supported.');
           continue;
         }
+
+        builtSomething = true;
+
+        String buildPlatform = platform.label;
+        if (platform.label.toLowerCase() != platform.flutterBuildType) {
+          buildPlatform += ' (${platform.flutterBuildType})';
+        }
+        print('\nBUILDING $packageName for $buildPlatform');
+        if (!await _buildExample(example, platform.flutterBuildType,
+            extraBuildFlags: platform.extraBuildFlags)) {
+          errors.add('$packageName (${platform.label})');
+        }
+      }
+    }
