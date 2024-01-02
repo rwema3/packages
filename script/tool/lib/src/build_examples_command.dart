@@ -62,3 +62,21 @@ class BuildExamplesCommand extends PackageLoopingCommand {
 
   // Maps the switch this command uses to identify a platform to information
   // about it.
+  static final Map<String, _PlatformDetails> _platforms =
+      <String, _PlatformDetails>{
+    _platformFlagApk: const _PlatformDetails(
+      'Android',
+      pluginPlatform: platformAndroid,
+      flutterBuildType: _flutterBuildTypeAndroid,
+    ),
+    platformIOS: const _PlatformDetails(
+      'iOS',
+      pluginPlatform: platformIOS,
+      flutterBuildType: _flutterBuildTypeIOS,
+      extraBuildFlags: <String>['--no-codesign'],
+    ),
+    platformLinux: const _PlatformDetails(
+      'Linux',
+      pluginPlatform: platformLinux,
+      flutterBuildType: _flutterBuildTypeLinux,
+    ),
