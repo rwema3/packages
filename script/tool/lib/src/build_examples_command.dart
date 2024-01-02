@@ -242,3 +242,22 @@ class BuildExamplesCommand extends PackageLoopingCommand {
           printError(_pluginToolsConfigExample);
           throw ToolExit(_exitInvalidPluginToolsConfig);
         }
+        if (buildFlagsConfiguration.containsKey(_pluginToolsConfigGlobalKey)) {
+          final Object? globalBuildFlagsConfiguration =
+              buildFlagsConfiguration[_pluginToolsConfigGlobalKey];
+          if (globalBuildFlagsConfiguration is! YamlList) {
+            printError(
+                'The $_pluginToolsConfigFileName file\'s "$_pluginToolsConfigBuildFlagsKey" key must be a map');
+            printError('whose "$_pluginToolsConfigGlobalKey" key is a list.');
+            printError(
+                'That list must contain a list of arguments to pass to the flutter tool.');
+            printError(
+                'For example, the $_pluginToolsConfigFileName file could look like:');
+            printError(_pluginToolsConfigExample);
+            throw ToolExit(_exitInvalidPluginToolsConfig);
+          }
+          yield* globalBuildFlagsConfiguration.cast<String>();
+        }
+      }
+    }
+  }
