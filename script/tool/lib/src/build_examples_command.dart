@@ -285,3 +285,10 @@ class BuildExamplesCommand extends PackageLoopingCommand {
   }
 }
 
+/// A collection of information related to a specific platform.
+class _PlatformDetails {
+  const _PlatformDetails(
+    this.label, {
+    required this.pluginPlatform,
+    required this.flutterBuildType,
+    this.extraBuildFlags = const <String>[],
