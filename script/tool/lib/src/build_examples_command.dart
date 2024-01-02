@@ -170,3 +170,14 @@ class BuildExamplesCommand extends PackageLoopingCommand {
     for (final RepositoryPackage example in package.getExamples()) {
       final String packageName =
           getRelativePosixPath(example.directory, from: packagesDir);
+
+      for (final _PlatformDetails platform in buildPlatforms) {
+        // Repo policy is that a plugin must have examples configured for all
+        // supported platforms. For packages, just log and skip any requested
+        // platform that a package doesn't have set up.
+        if (!isPlugin &&
+            !example.appSupportsPlatform(
+                getPlatformByName(platform.pluginPlatform))) {
+          print('Skipping ${platform.label} for $packageName; not supported.');
+          continue;
+        }
