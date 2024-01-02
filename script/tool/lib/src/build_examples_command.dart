@@ -26,3 +26,8 @@ $_pluginToolsConfigBuildFlagsKey:
 ''';
 
 const int _exitNoPlatformFlags = 3;
+const int _exitInvalidPluginToolsConfig = 4;
+
+// Flutter build types. These are the values passed to `flutter build <foo>`.
+const String _flutterBuildTypeAndroid = 'apk';
+const String _flutterBuildTypeIOS = 'ios';
