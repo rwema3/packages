@@ -13,3 +13,10 @@ import 'common/repository_package.dart';
 
 /// Key for APK.
 const String _platformFlagApk = 'apk';
+
+const String _pluginToolsConfigFileName = '.pluginToolsConfig.yaml';
+const String _pluginToolsConfigBuildFlagsKey = 'buildFlags';
+const String _pluginToolsConfigGlobalKey = 'global';
+
+const String _pluginToolsConfigExample = '''
+$_pluginToolsConfigBuildFlagsKey:
