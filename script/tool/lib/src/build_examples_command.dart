@@ -80,3 +80,20 @@ class BuildExamplesCommand extends PackageLoopingCommand {
       pluginPlatform: platformLinux,
       flutterBuildType: _flutterBuildTypeLinux,
     ),
+    platformMacOS: const _PlatformDetails(
+      'macOS',
+      pluginPlatform: platformMacOS,
+      flutterBuildType: _flutterBuildTypeMacOS,
+    ),
+    platformWeb: const _PlatformDetails(
+      'web',
+      pluginPlatform: platformWeb,
+      flutterBuildType: _flutterBuildTypeWeb,
+    ),
+    platformWindows: const _PlatformDetails(
+      'Windows',
+      pluginPlatform: platformWindows,
+      flutterBuildType: _flutterBuildTypeWindows,
+    ),
+  };
+
