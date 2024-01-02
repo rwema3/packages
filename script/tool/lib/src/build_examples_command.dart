@@ -151,3 +151,22 @@ class BuildExamplesCommand extends PackageLoopingCommand {
           ? '${requestedPlatforms.first.label} is not supported'
           : 'None of [${platformDisplayList(requestedPlatforms)}] are supported';
       return PackageResult.skip('$unsupported by this plugin');
+    }
+    print('Building for: ${platformDisplayList(buildPlatforms)}');
+
+    final Set<_PlatformDetails> unsupportedPlatforms =
+        requestedPlatforms.toSet().difference(buildPlatforms);
+    if (unsupportedPlatforms.isNotEmpty) {
+      final List<String> skippedPlatforms = unsupportedPlatforms
+          .map((_PlatformDetails platform) => platform.label)
+          .toList();
+      skippedPlatforms.sort();
+      print('Skipping unsupported platform(s): '
+          '${skippedPlatforms.join(', ')}');
+    }
+    print('');
+
+    bool builtSomething = false;
+    for (final RepositoryPackage example in package.getExamples()) {
+      final String packageName =
+          getRelativePosixPath(example.directory, from: packagesDir);
