@@ -31,3 +31,7 @@ const int _exitInvalidPluginToolsConfig = 4;
 // Flutter build types. These are the values passed to `flutter build <foo>`.
 const String _flutterBuildTypeAndroid = 'apk';
 const String _flutterBuildTypeIOS = 'ios';
+const String _flutterBuildTypeLinux = 'linux';
+const String _flutterBuildTypeMacOS = 'macos';
+const String _flutterBuildTypeWeb = 'web';
+const String _flutterBuildTypeWindows = 'windows';
