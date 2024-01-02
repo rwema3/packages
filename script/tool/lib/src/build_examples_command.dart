@@ -97,3 +97,16 @@ class BuildExamplesCommand extends PackageLoopingCommand {
     ),
   };
 
+  @override
+  final String name = 'build-examples';
+
+  @override
+  final String description =
+      'Builds all example apps (IPA for iOS and APK for Android).\n\n'
+      'This command requires "flutter" to be in your path.\n\n'
+      'A $_pluginToolsConfigFileName file can be placed in an example app '
+      'directory to specify additional build arguments. It should be a YAML '
+      'file with a top-level map containing a single key '
+      '"$_pluginToolsConfigBuildFlagsKey" containing a map containing a '
+      'single key "$_pluginToolsConfigGlobalKey" containing a list of build '
+      'arguments.';
