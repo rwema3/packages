@@ -292,3 +292,11 @@ class _PlatformDetails {
     required this.pluginPlatform,
     required this.flutterBuildType,
     this.extraBuildFlags = const <String>[],
+  });
+
+  /// The name to use in output.
+  final String label;
+
+  /// The key in a pubspec's platform: entry.
+  final String pluginPlatform;
+
